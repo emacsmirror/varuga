@@ -15,7 +15,7 @@ time of the event from a natural language
 specification. `org-read-date` assumes that most of the time you want
 to enter a date in the future: if you omit the month/year and the
 given day/month is *before* today, it assumes that you mean a future
-date. See [The date/time prompt in the *Org mode manual*](https://orgmode.org/manual/The-date_002ftime-prompt.html) for more details. Here are a few examples of date-time specifications. All the examples below assume that the current date-time is June 16, 2024 7 am.
+date. See [*The date/time prompt* in the Org mode manual](https://orgmode.org/manual/The-date_002ftime-prompt.html) for more details. Here are a few examples of date-time specifications. All the examples below assume that the current date-time is June 16, 2024 7 am.
 ```
 25-2-5 1pm      ⇒ 2025-02-05 1300
 2/5/25 1am      ⇒ 2025-02-05 0100
