@@ -8,6 +8,8 @@ the time of the event in various configured timezones.
 
 All dates and times you enter into varuga are in your local timezone. varuga automatically converts these into a set of configured timezones (specified in `varuga-clock-list`) for your correspondents' benefit.
 
+🙏 வருக வருக! (varuga varuga!) roughly translates to "Welcome" in Tamil.
+
 # How to use
 
 In a message mode buffer, run `M-x varuga-invite`, fill out the details. The email will be filled out with the ical and plain text parts. Add any other text you like and send!
