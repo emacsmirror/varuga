@@ -35,6 +35,9 @@
                         #:select? (or (git-predicate (dirname (current-source-directory)))
                                       (const #t))))
     (build-system emacs-build-system)
+    (arguments
+     (list #:tests? #t
+           #:test-command #~(list "make" "check")))
     (home-page "https://git.systemreboot.net/varuga")
     (synopsis "Send ical calendar invites by email")
     (description "@code{emacs-varuga} lets you send ical calendar invites using your
