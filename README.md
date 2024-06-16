@@ -8,6 +8,10 @@ the time of the event in various configured timezones.
 
 All dates and times you enter into varuga are in your local timezone. varuga automatically converts these into a set of configured timezones (specified in `varuga-clock-list`) for your correspondents' benefit.
 
+# How to use
+
+In a message mode buffer, run `M-x varuga-invite`, fill out the details. The email will be filled out with the ical and plain text parts. Add any other text you like and send!
+
 # Natural language date-time and event duration specification
 
 varuga uses the very flexible `org-read-date` to read the date and
