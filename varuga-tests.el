@@ -41,7 +41,7 @@
    (equal (with-temp-buffer
             (varuga-insert-calendar-line 'foo "foo\nbar")
             (buffer-string))
-          "FOO:foo\\Nbar\r\n")))
+          "FOO:foo\\Nbar\n")))
 
 (ert-deftest line-limit-includes-properties ()
   (should

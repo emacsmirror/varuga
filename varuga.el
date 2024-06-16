@@ -84,14 +84,14 @@ KEY is the name of the ical property and VALUE is its value."
                       (insert str)
                       (setq octets-so-far next-octets))
                   (progn
-                    (insert "\r\n ")
+                    (insert "\n ")
                     ;; Set octets so far to 1 to account for the
                     ;; folding space.
                     (setq octets-so-far 1)))))
             (format "%s:%s"
                     (upcase (symbol-name key))
                     value)))
-  (insert "\r\n"))
+  (insert "\n"))
 
 (defun varuga-format-time-string (time)
   "Format TIME to ical specification."
