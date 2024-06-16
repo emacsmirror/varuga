@@ -12,6 +12,8 @@ All dates and times you enter into varuga are in your local timezone. varuga aut
 
 In a message mode buffer, run `M-x varuga-invite`, fill out the details. The email will be filled out with the ical and plain text parts. Add any other text you like and send!
 
+![Screenshot of varuga invite](screenshot.png)
+
 # Natural language date-time and event duration specification
 
 varuga uses the very flexible `org-read-date` to read the date and
