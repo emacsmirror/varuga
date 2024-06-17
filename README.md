@@ -12,7 +12,7 @@ All dates and times you enter into varuga are in your local timezone. varuga aut
 
 # How to use
 
-In a message mode buffer, run `M-x varuga-invite`, fill out the details. The email will be filled out with the ical and plain text parts. Add any other text you like and send!
+In a message mode buffer, run `M-x varuga-invite`, and enter the event details. The email will be filled out with the ical and plain text parts. Add any other text you like and send!
 
 ![Screenshot of varuga invite](screenshot.png)
 
