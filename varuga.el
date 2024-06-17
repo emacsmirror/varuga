@@ -138,14 +138,15 @@ is the length of the event in minutes."
                      (org-duration-to-minutes
                       (read-string "Duration: "))))
   (save-excursion
-    ;; Fill Subject header.
-    (save-restriction
-      (message-narrow-to-headers)
-      (re-search-forward "^Subject:")
-      (message-narrow-to-field)
-      (end-of-line)
-      ;; TODO: Allow customization of the Subject format.
-      (insert (format "Invitation: %s" summary)))
+    ;; Fill Subject header if it is blank.
+    (when (string-blank-p (message-fetch-field "Subject"))
+      (save-restriction
+        (message-narrow-to-headers)
+        (re-search-forward "^Subject:")
+        (message-narrow-to-field)
+        (end-of-line)
+        ;; TODO: Allow customization of the Subject format.
+        (insert (format "Invitation: %s" summary))))
     ;; Fill email body.
     (goto-char (point-max))
     (insert "<#multipart type=mixed>\n")
