@@ -132,7 +132,10 @@ SUMMARY is a short description of the event.  LOCATION is the
 location of the event (typically a URI for online meetings).
 WHEN is the encoded time when the event is scheduled.  DURATION
 is the length of the event in minutes."
-  (interactive (list (read-string "Event Summary: ")
+  (interactive (list (read-string "Event Summary: "
+                                  (string-trim
+                                   (string-remove-prefix
+                                    "Re:" (message-fetch-field "Subject"))))
                      (read-string "Location: ")
                      (org-read-date t t nil "When?")
                      (org-duration-to-minutes
