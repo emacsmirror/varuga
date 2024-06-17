@@ -61,4 +61,4 @@ make check
 
 # License
 
-varuga is free software released under the terms of the [[https://www.gnu.org/licenses/gpl.txt][GNU General Public License], either version 3 of the License, or (at your option) any later version.
+varuga is free software released under the terms of the [GNU General Public License](https://www.gnu.org/licenses/gpl.txt), either version 3 of the License, or (at your option) any later version.
