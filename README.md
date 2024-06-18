@@ -8,7 +8,7 @@ the time of the event in various configured timezones.
 
 All dates and times you enter into varuga are in your local timezone. varuga automatically converts these into a set of configured timezones (specified in `varuga-clock-list`) for your correspondents' benefit.
 
-🙏 வருக வருக! (varuga varuga!) roughly translates to "Welcome" in Tamil.
+🙏 வருக வருக! (varuga varuga!) is a Tamil expression that is used to warmly welcome people to an event.
 
 # How to use
 
