@@ -126,6 +126,11 @@ KEY is the name of the ical property and VALUE is its value."
           (varuga-calendar-components calendar))
   (varuga-insert-calendar-line 'end "VCALENDAR"))
 
+(defun varuga-message-subject ()
+  "Return subject of message."
+  (or (message-fetch-field "Subject")
+      ""))
+
 (defun varuga-invite (summary location when duration)
   "Insert calendar invitation into current email message buffer.
 SUMMARY is a short description of the event.  LOCATION is the
@@ -135,14 +140,14 @@ is the length of the event in minutes."
   (interactive (list (read-string "Event Summary: "
                                   (string-trim
                                    (string-remove-prefix
-                                    "Re:" (message-fetch-field "Subject"))))
+                                    "Re:" (varuga-message-subject))))
                      (read-string "Location: ")
                      (org-read-date t t nil "When?")
                      (org-duration-to-minutes
                       (read-string "Duration: "))))
   (save-excursion
     ;; Fill Subject header if it is blank.
-    (when (string-blank-p (message-fetch-field "Subject"))
+    (when (string-blank-p (varuga-message-subject))
       (save-restriction
         (message-narrow-to-headers)
         (re-search-forward "^Subject:")
