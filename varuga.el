@@ -144,7 +144,7 @@ is the length of the event in minutes."
                      (read-string "Location: ")
                      (org-read-date t t nil "When?")
                      (org-duration-to-minutes
-                      (read-string "Duration: "))))
+                      (read-string "Duration: " "1h"))))
   (save-excursion
     ;; Fill Subject header if it is blank.
     (when (string-blank-p (varuga-message-subject))
