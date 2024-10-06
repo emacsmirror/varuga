@@ -91,11 +91,10 @@ KEY is the name of the ical property and VALUE is its value."
                     (progn
                       (insert str)
                       (setq octets-so-far next-octets))
-                  (progn
-                    (insert "\n ")
-                    ;; Set octets so far to 1 to account for the
-                    ;; folding space.
-                    (setq octets-so-far 1)))))
+                  (insert "\n ")
+                  ;; Set octets so far to 1 to account for the
+                  ;; folding space.
+                  (setq octets-so-far 1))))
             (format "%s:%s"
                     (upcase (symbol-name key))
                     value)))
