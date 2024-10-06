@@ -122,7 +122,7 @@ KEY is the name of the ical property and VALUE is its value."
   (varuga-insert-calendar-line 'begin "VCALENDAR")
   (varuga-insert-calendar-line 'version "2.0")
   (varuga-insert-calendar-line 'prodid varuga-product-identifier)
-  (seq-do 'varuga-insert-calendar-event
+  (seq-do #'varuga-insert-calendar-event
           (varuga-calendar-components calendar))
   (varuga-insert-calendar-line 'end "VCALENDAR"))
 
