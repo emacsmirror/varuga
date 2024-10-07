@@ -1,3 +1,5 @@
+[![MELPA](https://melpa.org/packages/varuga-badge.svg)](https://melpa.org/#/varuga)
+
 Send ical calendar invites using your Emacs mail client. These
 invites are similar to those produced by Google Calendar, Outlook
 Calendar, etc. and are compatible with them.
@@ -13,7 +15,6 @@ All dates and times you enter into varuga are in your local timezone. varuga aut
 # Installation
 
 varuga is available from [MELPA](https://melpa.org/#/varuga).
- [![MELPA](https://melpa.org/packages/varuga-badge.svg)](https://melpa.org/#/varuga)
 
 # How to use
 
