@@ -1,4 +1,5 @@
 [![MELPA](https://melpa.org/packages/varuga-badge.svg)](https://melpa.org/#/varuga)
+[![Laminar](https://ci.systemreboot.net/badge/varuga.svg)](https://ci.systemreboot.net/jobs/varuga)
 
 Send ical calendar invites using your Emacs mail client. These
 invites are similar to those produced by Google Calendar, Outlook
