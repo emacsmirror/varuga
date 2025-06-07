@@ -51,6 +51,11 @@
 (require 'org-id)
 (require 'time)
 
+;; We use the `method' parameter in our text/calendar MIME part; allow
+;; it.
+(unless (memq 'method mml-content-type-parameters)
+  (add-to-list 'mml-content-type-parameters 'method))
+
 (cl-defstruct (varuga-calendar (:constructor varuga-calendar)
                                (:copier nil))
   components)
@@ -149,6 +154,7 @@ PARAMS is an alist of ical property parameters and their values."
   (varuga-insert-calendar-line 'begin "VCALENDAR")
   (varuga-insert-calendar-line 'version "2.0")
   (varuga-insert-calendar-line 'prodid varuga-product-identifier)
+  (varuga-insert-calendar-line 'method "REQUEST")
   (seq-do #'varuga-insert-calendar-event
           (varuga-calendar-components calendar))
   (varuga-insert-calendar-line 'end "VCALENDAR"))
@@ -196,7 +202,7 @@ is the length of the event in minutes."
               (insert "\n"))
             varuga-clock-list)
     ;; Insert ical part.
-    (insert "<#part type=text/calendar>\n")
+    (insert "<#part type=text/calendar method=request name=invite.ics>\n")
     (varuga-insert-calendar
      (varuga-calendar
       :components (list (pcase (mail-extract-address-components
