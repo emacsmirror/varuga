@@ -2,6 +2,7 @@
 
 ;; Send ical calendar invites by email
 ;; Copyright © 2024 by Arun I
+;; Copyright © 2025 Jake Coble <j@kecoble.com>
 ;;
 ;; Author: Arun Isaac <arunisaac@systemreboot.net>
 ;; Homepage: https://git.systemreboot.net/varuga
@@ -71,3 +72,9 @@
             (count-lines (point-min) (point-max)))
           2)))
 
+(ert-deftest line-limit-does-not-eat-characters ()
+  (should
+   (equal (with-temp-buffer
+            (varuga-insert-calendar-line 'foo (make-string 100 ?a))
+            (count-matches "a" (point-min) (point-max)))
+          100)))

@@ -2,6 +2,7 @@
 
 ;; Send ical calendar invites by email
 ;; Copyright © 2024 Arun Isaac
+;; Copyright © 2025 Jake Coble <j@kecoble.com>
 ;;
 ;; Author: Arun Isaac <arunisaac@systemreboot.net>
 ;; Version: 0.1.0
@@ -88,13 +89,12 @@ KEY is the name of the ical property and VALUE is its value."
                      (next-octets (+ octets-so-far
                                      (string-bytes str))))
                 (if (< next-octets maximum-octets-per-line)
-                    (progn
-                      (insert str)
-                      (setq octets-so-far next-octets))
+                    (setq octets-so-far next-octets)
                   (insert "\n ")
-                  ;; Set octets so far to 1 to account for the
-                  ;; folding space.
-                  (setq octets-so-far 1))))
+                  ;; Add an extra 1 to octets so far to account for
+                  ;; the folding space.
+                  (setq octets-so-far (1+ (string-bytes str))))
+                (insert str)))
             (format "%s:%s"
                     (upcase (symbol-name key))
                     value)))
