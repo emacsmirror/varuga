@@ -108,6 +108,8 @@ KEY is the name of the ical property and VALUE is its value."
   "Insert ical calendar EVENT at point."
   (varuga-insert-calendar-line 'begin "VEVENT")
   (varuga-insert-calendar-line 'uid (org-id-uuid))
+  (varuga-insert-calendar-line 'dtstamp
+                               (varuga-format-time-string (current-time)))
   (varuga-insert-calendar-line 'organizer
                                (format "CN=%s:MAILTO:%s"
                                        (varuga-calendar-event-organizer event)
