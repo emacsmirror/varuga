@@ -7,7 +7,7 @@
 ;; Author: Arun Isaac <arunisaac@systemreboot.net>
 ;; Version: 0.1.0
 ;; Homepage: https://git.systemreboot.net/varuga
-;; Package-Requires: ((emacs "26.1"))
+;; Package-Requires: ((emacs "27.1"))
 
 ;; This file is part of varuga.
 
@@ -62,7 +62,8 @@
   time-start
   time-end
   summary
-  location)
+  location
+  attendees)
 
 (defvar varuga-product-identifier
   "-//systemreboot//varuga//NONSGML v1.0//EN")
@@ -121,6 +122,16 @@ PARAMS is an alist of ical property parameters and their values."
                                (format "MAILTO:%s"
                                        (varuga-calendar-event-organizer-email-address event))
                                `((cn . ,(varuga-calendar-event-organizer event))))
+  (seq-do (pcase-lambda (`(,name ,address))
+            (let ((properties `((role . "REQ-PARTICIPANT")
+                                (rsvp . "TRUE"))))
+              (varuga-insert-calendar-line 'attendee
+                                           (format "MAILTO:%s" address)
+                                           (if name
+                                               (cons `(cn . ,name)
+                                                     properties)
+                                             properties))))
+          (varuga-calendar-event-attendees event))
   (varuga-insert-calendar-line 'dtstart
                                (varuga-format-time-string
                                 (varuga-calendar-event-time-start event)))
@@ -198,7 +209,8 @@ is the length of the event in minutes."
                             :time-end (time-add when
                                                 (* 60 (org-duration-to-minutes duration)))
                             :summary summary
-                            :location location))))))
+                            :location location
+                            :attendees (message-all-recipients)))))))
     (insert "<#/multipart>\n")))
 
 (provide 'varuga)
