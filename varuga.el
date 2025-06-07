@@ -75,9 +75,10 @@
 (defvar varuga-time-format
   world-clock-time-format)
 
-(defun varuga-insert-calendar-line (key value)
+(defun varuga-insert-calendar-line (key value &optional params)
   "Insert ical calendar line.
-KEY is the name of the ical property and VALUE is its value."
+KEY is the name of the ical property and VALUE is its value.
+PARAMS is an alist of ical property parameters and their values."
   ;; Limit content line length to 75 octets as required by RFC 5545.
   (let ((maximum-octets-per-line 75)
         (octets-so-far 0))
@@ -95,8 +96,14 @@ KEY is the name of the ical property and VALUE is its value."
                   ;; the folding space.
                   (setq octets-so-far (1+ (string-bytes str))))
                 (insert str)))
-            (format "%s:%s"
+            (format "%s%s:%s"
                     (upcase (symbol-name key))
+                    (seq-mapcat (pcase-lambda (`(,key . ,value))
+                                  (format ";%s=%s"
+                                          (upcase (symbol-name key))
+                                          value))
+                                params
+                                'string)
                     value)))
   (insert "\n"))
 
@@ -111,9 +118,9 @@ KEY is the name of the ical property and VALUE is its value."
   (varuga-insert-calendar-line 'dtstamp
                                (varuga-format-time-string (current-time)))
   (varuga-insert-calendar-line 'organizer
-                               (format "CN=%s:MAILTO:%s"
-                                       (varuga-calendar-event-organizer event)
-                                       (varuga-calendar-event-organizer-email-address event)))
+                               (format "MAILTO:%s"
+                                       (varuga-calendar-event-organizer-email-address event))
+                               `((cn . ,(varuga-calendar-event-organizer event))))
   (varuga-insert-calendar-line 'dtstart
                                (varuga-format-time-string
                                 (varuga-calendar-event-time-start event)))
