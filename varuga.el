@@ -164,6 +164,7 @@ PARAMS is an alist of ical property parameters and their values."
   (or (message-fetch-field "Subject")
       ""))
 
+;;;###autoload
 (defun varuga-invite (summary location when duration)
   "Insert calendar invitation into current email message buffer.
 SUMMARY is a short description of the event.  LOCATION is the
