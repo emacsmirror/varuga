@@ -1,13 +1,9 @@
 [![MELPA](https://melpa.org/packages/varuga-badge.svg)](https://melpa.org/#/varuga)
 [![Laminar](https://ci.systemreboot.net/badge/varuga.svg)](https://ci.systemreboot.net/jobs/varuga)
 
-Send ical calendar invites using your Emacs mail client. These
-invites are similar to those produced by Google Calendar, Outlook
-Calendar, etc. and are compatible with them.
+Send ical calendar invites using your Emacs mail client. These invites are similar to those produced by Google Calendar, Outlook Calendar, etc. and are compatible with them.
 
-varuga populates a message mode buffer with an ical MIME part (using
-MML, the MIME Meta Language). It also adds a plain text part listing
-the time of the event in various configured timezones.
+varuga populates a message mode buffer with an ical MIME part (using MML, the MIME Meta Language). It also adds a plain text part listing the time of the event in various configured timezones.
 
 All dates and times you enter into varuga are in your local timezone. varuga automatically converts these into a set of configured timezones (specified in `varuga-clock-list`) for your correspondents' benefit.
 
@@ -25,12 +21,7 @@ In a message mode buffer, run `M-x varuga-invite`, and enter the event details. 
 
 # Natural language date-time and event duration specification
 
-varuga uses the very flexible `org-read-date` to read the date and
-time of the event from a natural language
-specification. `org-read-date` assumes that most of the time you want
-to enter a date in the future: if you omit the month/year and the
-given day/month is *before* today, it assumes that you mean a future
-date. See [*The date/time prompt* in the Org mode manual](https://orgmode.org/manual/The-date_002ftime-prompt.html) for more details. Here are a few examples of date-time specifications. All the examples below assume that the current date-time is June 16, 2024 7 am.
+varuga uses the very flexible `org-read-date` to read the date and time of the event from a natural language specification. `org-read-date` assumes that most of the time you want to enter a date in the future: if you omit the month/year and the given day/month is *before* today, it assumes that you mean a future date. See [*The date/time prompt* in the Org mode manual](https://orgmode.org/manual/The-date_002ftime-prompt.html) for more details. Here are a few examples of date-time specifications. All the examples below assume that the current date-time is June 16, 2024 7 am.
 ```
 25-2-5 1pm      ⇒ 2025-02-05 1300
 2/5/25 1am      ⇒ 2025-02-05 0100
