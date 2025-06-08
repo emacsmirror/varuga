@@ -53,8 +53,7 @@
 
 ;; We use the `method' parameter in our text/calendar MIME part; allow
 ;; it.
-(unless (memq 'method mml-content-type-parameters)
-  (add-to-list 'mml-content-type-parameters 'method))
+(add-to-list 'mml-content-type-parameters 'method)
 
 (cl-defstruct (varuga-calendar (:constructor varuga-calendar)
                                (:copier nil))
