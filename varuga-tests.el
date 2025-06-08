@@ -1,7 +1,7 @@
 ;;; varuga.el --- Send ical calendar invites by email -*- lexical-binding: t -*-
 
 ;; Send ical calendar invites by email
-;; Copyright © 2024 Arun Isaac
+;; Copyright © 2024 Arun Isaac <arunisaac@systemreboot.net>
 ;; Copyright © 2025 Jake Coble <j@kecoble.com>
 ;;
 ;; Author: Arun Isaac <arunisaac@systemreboot.net>
