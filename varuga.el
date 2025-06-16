@@ -51,10 +51,6 @@
 (require 'org-id)
 (require 'time)
 
-;; We use the `method' parameter in our text/calendar MIME part; allow
-;; it.
-(add-to-list 'mml-content-type-parameters 'method)
-
 (cl-defstruct (varuga-calendar (:constructor varuga-calendar)
                                (:copier nil))
   components)
@@ -79,6 +75,10 @@
 
 (defvar varuga-time-format
   world-clock-time-format)
+
+(defvar varuga--mml-content-type-confirmed nil
+  "t if we've already asked the user whether to configure
+`mml-content-type-parameters' for RSVP support, nil otherwise.")
 
 (defun varuga-insert-calendar-line (key value &optional params)
   "Insert ical calendar line.
@@ -163,6 +163,24 @@ PARAMS is an alist of ical property parameters and their values."
   (or (message-fetch-field "Subject")
       ""))
 
+(defun varuga-mml-content-type-confirm ()
+  "Ask the user for permission to modify
+`mml-content-type-parameters' for RSVP support."
+  (when (and (not (memq 'method mml-content-type-parameters))
+             (not varuga--mml-content-type-confirmed)
+             (let ((help-form "\
+This will add 'method to mml-content-type-parameters, which is
+required for RSVPs to work."))
+               (y-or-n-p "Set up RSVP support?")))
+    (if (let ((help-form "\
+This will save the value of mml-content-type-parameters in your
+`custom-file', so future sessions will support RSVP without
+prompting you."))
+          (y-or-n-p "Support RSVP in future sessions?"))
+        (customize-push-and-save 'mml-content-type-parameters '(method))
+      (add-to-list 'mml-content-type-parameters 'method))
+    (setq varuga--mml-content-type-confirmed t)))
+
 ;;;###autoload
 (defun varuga-invite (summary location when duration)
   "Insert calendar invitation into current email message buffer.
@@ -178,6 +196,7 @@ is the length of the event in minutes."
                      (org-read-date t t nil "When?")
                      (org-duration-to-minutes
                       (read-string "Duration: " "1h"))))
+  (varuga-mml-content-type-confirm)
   (save-excursion
     ;; Fill Subject header if it is blank.
     (when (string-blank-p (varuga-message-subject))
